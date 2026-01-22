@@ -1,4 +1,4 @@
-/.idea/
-/appsettings*.json
-/obj/
-/bin/
+.idea/
+appsettings*.json
+obj/
+bin/
