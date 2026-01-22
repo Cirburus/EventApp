@@ -1,0 +1,139 @@
+/*
+CREATE OR REPLACE NETWORK RULE TaylorsMac TYPE = IPV4 MODE = INGRESS Value_List = ('');
+SHOW NETWORK RULES;
+CREATE OR REPLACE NETWORK POLICY AllowTaylorsMacbyRule Allowed_Network_Rule_List = ('TaylorsMac');
+show network policies;
+ALTER USER TSULLIVAN SET NETWORK_POLICY = AllowTaylorsMacbyRule;
+*/
+/*DATs-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+CREATE
+OR REPLACE SCHEMA EventsApp;
+CREATE
+OR REPLACE TABLE EventsApp.DAT_User(
+    UserId int IDENTITY(1, 1) PRIMARY KEY,
+    FName VARCHAR(20),
+    LName VARCHAR(20) NOT NULL
+);
+CREATE
+OR REPLACE TABLE EventsApp.DAT_Event(
+    EventId int IDENTITY(1, 1) PRIMARY KEY,
+    EventName VARCHAR(20) NOT NULL,
+    EventDesc varchar(255),
+    EventCost int,
+    EventStart DateTime,
+    EventEnd DateTime
+);
+CREATE
+OR REPLACE Table EventsApp.DAT_SideEvent(
+    SideEventId int IDENTITY(1, 1) PRIMARY KEY,
+    SideEventName varchar(20) NOT NULL,
+    SideEventDesc varchar(255),
+    SideEventCost int
+);
+CREATE
+OR REPLACE TABLE EventsApp.DAT_Team(
+    TeamId int IDENTITY(1, 1) PRIMARY KEY,
+    TeamName varchar(20)
+);
+CREATE
+OR REPLACE TABLE EventsApp.DAT_Role(
+    RoleId int IDENTITY(1, 1) PRIMARY KEY,
+    RoleName varchar(20) NOT NULL,
+    RoleDesc varchar(255)
+);
+CREATE
+OR REPLACE TABLE EventsApp.DAT_Location(
+    LocationId int IDENTITY(1, 1) PRIMARY KEY,
+    LocationName varchar(255),
+    LocationAddress1 varchar(255),
+    LocationAddress2 varchar(255),
+    LocationCity varchar(20),
+    LocationStateProv varchar(20),
+    LocationPostCode varchar(10),
+    LocationRemote varchar(20),
+    LocationEmail varchar(255),
+    LocationPhone varchar(14)
+);
+/*MAPs-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+CREATE
+OR REPLACE TABLE EventsApp.MAP_EventUser(
+    EventId int CONSTRAINT EventUserEventIdFK FOREIGN KEY REFERENCES EventsApp.DAT_Event(EventId),
+    UserId int CONSTRAINT EventUserUserIdFK FOREIGN KEY REFERENCES EventsApp.DAT_User(UserId)
+);
+CREATE
+OR REPLACE TABLE EventsApp.MAP_EventSideEvent(
+    EventId int CONSTRAINT EventSideEventEventId FOREIGN KEY REFERENCES EventsApp.DAT_Event(EventId),
+    SideEventId int CONSTRAINT EventSideEventSideEventId FOREIGN KEY REFERENCES EventsApp.DAT_SideEvent(SideEventId)
+);
+CREATE
+OR REPLACE TABLE EventsApp.MAP_EventSideEventUser(
+    EventId int CONSTRAINT EventSideEventUserEventId FOREIGN KEY REFERENCES EventsApp.DAT_Event(EventId),
+    SideEventId int CONSTRAINT EventSideEventUserSideEventId FOREIGN KEY REFERENCES EventsApp.DAT_SideEvent(SideEventId),
+    UserId int CONSTRAINT EventSideEventUserUserId FOREIGN KEY REFERENCES EventsApp.DAT_User(UserId)
+);
+CREATE
+OR REPLACE TABLE EventsApp.MAP_EventTeamUser(
+    EventId int CONSTRAINT EventTeamUserEventId FOREIGN KEY REFERENCES EventsApp.DAT_Event(EventId),
+    TeamId int CONSTRAINT EventTeamUserTeamId FOREIGN KEY REFERENCES EventsApp.DAT_Team(TeamId),
+    UserId int CONSTRAINT EventTeamUserUserId FOREIGN KEY REFERENCES EventsApp.DAT_User(UserId)
+);
+CREATE
+OR REPLACE TABLE EventsApp.MAP_EventLocation(
+    EventId int CONSTRAINT EventLocationEventId FOREIGN KEY REFERENCES EventsApp.DAT_Event(EventId),
+    LocationId int CONSTRAINT EventLocationLocationId FOREIGN KEY REFERENCES EventsApp.DAT_Location(LocationId)
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO
+    EventsApp.DAT_Event (EventName)
+VALUES
+    ('MCO2025'),
+    ('MCO2026');
+INSERT into
+    EventsApp.DAT_Location (LocationName)
+VALUES
+    ('Six Mile Creek Golf Course');
+INSERT INTO
+    EventsApp.DAT_User (FName, LName)
+VALUES
+    ('Taylor', 'Sullivan'),
+    ('Peggy', 'Sullivan'),
+    ('Barrett', 'Sullivan'),
+    ('Kona', 'Sullivan');
+Insert into
+    EventsApp.MAP_EVENTUser
+VALUES
+    (1, 1),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4);
+INSERT into
+    EventsApp.DAT_SideEvent (SideEventName)
+VALUES
+    ('Putting Contest'),
+    ('Raffle'),
+    ('Prize Wall');
+INSERT into
+    EventsApp.MAP_EventSideEvent
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3);
+Insert into
+    EventsApp.MAP_EventSideEventUser
+Values
+    (1, 1, 1),
+    (1, 2, 1),
+    (1, 3, 1);
+Select
+    *
+From
+    DAT_USER u
+    LEFT JOIN MAP_EVENTUSER eu on u.USERID = eu.USERID
+    LEFT JOIN DAT_EVENT e on e.EventId = eu.eventid
+    LEFT JOIN MAP_EVENTSIDEEVENTUSER eseu on eseu.userid = u.userid
+    and eseu.eventid = e.eventId
+    LEFT JOIN DAT_SIDEEVENT se on se.sideeventid = eseu.sideeventid;
+    /*
+    Delete from DAT_User where FNAME = 'Jeff' and LNAME = 'The Landshark';
+    */

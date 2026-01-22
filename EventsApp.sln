@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsApp", "EventsApp.csproj", "{8C411BFC-940D-45B9-85B7-D0F44107D70B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C411BFC-940D-45B9-85B7-D0F44107D70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C411BFC-940D-45B9-85B7-D0F44107D70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C411BFC-940D-45B9-85B7-D0F44107D70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C411BFC-940D-45B9-85B7-D0F44107D70B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

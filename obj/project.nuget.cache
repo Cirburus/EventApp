@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "dgSpecHash": "tA+ZgmGXOGo=",
+  "success": true,
+  "projectFilePath": "/Users/tsullivan/Documents/Garage/EventsApp/EventsApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/tsullivan/.nuget/packages/apache.arrow/14.0.2/apache.arrow.14.0.2.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/awssdk.core/4.0.0.14/awssdk.core.4.0.0.14.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/awssdk.s3/4.0.4/awssdk.s3.4.0.4.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/azure.storage.blobs/12.13.0/azure.storage.blobs.12.13.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/azure.storage.common/12.12.0/azure.storage.common.12.12.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/efcore.snowflake/10.0.1/efcore.snowflake.10.0.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.api.gax/4.8.0/google.api.gax.4.8.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.api.gax.rest/4.8.0/google.api.gax.rest.4.8.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.apis/1.67.0/google.apis.1.67.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.apis.auth/1.67.0/google.apis.auth.1.67.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.apis.core/1.67.0/google.apis.core.1.67.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.apis.storage.v1/1.67.0.3365/google.apis.storage.v1.1.67.0.3365.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/google.cloud.storage.v1/4.10.0/google.cloud.storage.v1.4.10.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.entityframeworkcore/10.0.1/microsoft.entityframeworkcore.10.0.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.1/microsoft.entityframeworkcore.abstractions.10.0.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.1/microsoft.entityframeworkcore.analyzers.10.0.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.1/microsoft.entityframeworkcore.relational.10.0.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.extensions.apidescription.server/10.0.0/microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.identitymodel.abstractions/6.34.0/microsoft.identitymodel.abstractions.6.34.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.34.0/microsoft.identitymodel.jsonwebtokens.6.34.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.identitymodel.logging/6.34.0/microsoft.identitymodel.logging.6.34.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.identitymodel.tokens/6.34.0/microsoft.identitymodel.tokens.6.34.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/microsoft.openapi/2.3.0/microsoft.openapi.2.3.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/mono.unix/7.1.0-final.1.21458.1/mono.unix.7.1.0-final.1.21458.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/snowflake.data/5.2.1/snowflake.data.5.2.1.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/swashbuckle.aspnetcore/10.1.0/swashbuckle.aspnetcore.10.1.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/swashbuckle.aspnetcore.swagger/10.1.0/swashbuckle.aspnetcore.swagger.10.1.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/swashbuckle.aspnetcore.swaggergen/10.1.0/swashbuckle.aspnetcore.swaggergen.10.1.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/swashbuckle.aspnetcore.swaggerui/10.1.0/swashbuckle.aspnetcore.swaggerui.10.1.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/system.codedom/7.0.0/system.codedom.7.0.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/system.identitymodel.tokens.jwt/6.34.0/system.identitymodel.tokens.jwt.6.34.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/system.io.hashing/6.0.0/system.io.hashing.6.0.0.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
+    "/Users/tsullivan/.nuget/packages/tomlyn.signed/0.17.0/tomlyn.signed.0.17.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1901",
+      "level": "Warning",
+      "message": "Package 'AWSSDK.Core' 4.0.0.14 has a known low severity vulnerability, https://github.com/advisories/GHSA-9cvc-h2w8-phrp",
+      "projectPath": "/Users/tsullivan/Documents/Garage/EventsApp/EventsApp.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/tsullivan/Documents/Garage/EventsApp/EventsApp.csproj",
+      "libraryId": "AWSSDK.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
