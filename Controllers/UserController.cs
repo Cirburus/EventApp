@@ -10,14 +10,16 @@ namespace EventsApp.Controllers;
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpPost("add")]
-    public IActionResult AddUser([FromBody] User user)
+    public async Task<IActionResult> AddUsers([FromBody] List<User> user)
     {
-        return Ok(userService.CreateUser(user));
+        var result = await userService.CreateUsers(user);
+        return  Ok(result);
     }
     [HttpDelete("remove")]
-    public IActionResult AddUser([FromBody] int userId)
+    public async Task<IActionResult> RemoveUsers([FromBody] int userId)
     {
-        return Ok(userService.DeleteUser(userId));
+        var result = await userService.DeleteUsers(userId);
+        return Ok(result);
     }
     [HttpGet("getUsersById")]
     public IActionResult GetUsersById([FromBody] List<long> userId)

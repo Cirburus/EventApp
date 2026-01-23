@@ -6,11 +6,16 @@ namespace EventsApp.Services;
 
 public class UserService(SnowflakeContext snowflakeContext): IUserService
 {
-    public Task<int> CreateUser(User user)
+    public async Task<List<User>> CreateUsers(List<User> users)
     {
-        snowflakeContext.Users.Add(user);
+        foreach (var user in users)
+        {
+            snowflakeContext.Users.Add(user);
+        }
         
-        return snowflakeContext.SaveChangesAsync();
+        await snowflakeContext.SaveChangesAsync();    
+
+        return users;
     }
 
     public IQueryable<User> ReadUsersByIds(List<long> userIds)
@@ -23,7 +28,7 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
         return snowflakeContext.Users.Where(datUser => userNames.Contains(datUser.FName??"") || userNames.Contains(datUser.LName));
     }
 
-    public IQueryable<User> UpdateUser(User user)
+    public async Task<IQueryable<User>> UpdateUser(User user)
     {
         var usersToUpdate = snowflakeContext.Users.Where(datUser => user.UserId.Equals(datUser.UserId));
         foreach (var datUser in usersToUpdate)
@@ -32,12 +37,12 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
             datUser.LName = user.LName;
         }
 
-        snowflakeContext.SaveChanges();
+        await snowflakeContext.SaveChangesAsync();
         
         return usersToUpdate;
     }
 
-    public IQueryable<User> DeleteUser(int userId)
+    public async Task<IQueryable<User>> DeleteUsers(int userId)
     {
         var usersToDelete = snowflakeContext.Users.Where(datUser => datUser.UserId.Equals(userId));
         foreach (var datUser in usersToDelete)
@@ -45,7 +50,7 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
             snowflakeContext.Users.RemoveRange(datUser);
         }
 
-        snowflakeContext.SaveChanges();
+        await snowflakeContext.SaveChangesAsync();
         
         return usersToDelete;
     }
