@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EventsApp.Models.DAT;
+using EventsApp.Models.MAP;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventsApp.Models;
 
@@ -13,288 +15,288 @@ public partial class SnowflakeContext : DbContext
     {
     }
 
-    public virtual DbSet<DatEvent> DatEvents { get; set; }
+    public virtual DbSet<Event> Events { get; set; }
 
-    public virtual DbSet<DatLocation> DatLocations { get; set; }
+    public virtual DbSet<Location> Locations { get; set; }
 
-    public virtual DbSet<DatRole> DatRoles { get; set; }
+    public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<DatSideevent> DatSideevents { get; set; }
+    public virtual DbSet<SideEvent> SideEvents { get; set; }
 
-    public virtual DbSet<DatTeam> DatTeams { get; set; }
+    public virtual DbSet<Team> Teams { get; set; }
 
-    public virtual DbSet<DatUser> DatUsers { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<MapEventlocation> MapEventlocations { get; set; }
+    public virtual DbSet<EventLocation> EventLocations { get; set; }
 
-    public virtual DbSet<MapEventsideevent> MapEventsideevents { get; set; }
+    public virtual DbSet<EventSideEvent> EventEideEvents { get; set; }
 
-    public virtual DbSet<MapEventsideeventuser> MapEventsideeventusers { get; set; }
+    public virtual DbSet<EventSideEvent> EventSideEventUsers { get; set; }
 
-    public virtual DbSet<MapEventteamuser> MapEventteamusers { get; set; }
+    public virtual DbSet<EventTeamUser> EventTeamUsers { get; set; }
 
-    public virtual DbSet<MapEventuser> MapEventusers { get; set; }
+    public virtual DbSet<EventUser> EventUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("EVENTSAPP");
 
-        modelBuilder.Entity<DatEvent>(entity =>
+        modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.Eventid).HasName("SYS_CONSTRAINT_ac76d4d1-1630-46ef-a5e4-3f4e04cfaddc");
+            entity.HasKey(e => e.EventId).HasName("SYS_CONSTRAINT_ac76d4d1-1630-46ef-a5e4-3f4e04cfaddc");
 
-            entity.ToTable("DAT_EVENT");
+            entity.ToTable("EVENT", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Eventcost)
+            entity.Property(e => e.EventCost)
                 .HasPrecision(38)
                 .HasColumnName("EVENTCOST");
-            entity.Property(e => e.Eventdesc)
+            entity.Property(e => e.EventDesc)
                 .HasMaxLength(255)
                 .HasColumnName("EVENTDESC");
-            entity.Property(e => e.Eventend).HasColumnName("EVENTEND");
-            entity.Property(e => e.Eventname)
+            entity.Property(e => e.EventEnd).HasColumnName("EVENTEND");
+            entity.Property(e => e.EventName)
                 .HasMaxLength(20)
                 .HasColumnName("EVENTNAME");
-            entity.Property(e => e.Eventstart).HasColumnName("EVENTSTART");
+            entity.Property(e => e.EventStart).HasColumnName("EVENTSTART");
         });
 
-        modelBuilder.Entity<DatLocation>(entity =>
+        modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.Locationid).HasName("SYS_CONSTRAINT_d082a293-d8bd-4531-8502-d17d075c4562");
+            entity.HasKey(e => e.LocationId).HasName("SYS_CONSTRAINT_d082a293-d8bd-4531-8502-d17d075c4562");
 
-            entity.ToTable("DAT_LOCATION");
+            entity.ToTable("LOCATION", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Locationid)
+            entity.Property(e => e.LocationId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("LOCATIONID");
-            entity.Property(e => e.Locationaddress1)
+            entity.Property(e => e.LocationAddress1)
                 .HasMaxLength(255)
                 .HasColumnName("LOCATIONADDRESS1");
-            entity.Property(e => e.Locationaddress2)
+            entity.Property(e => e.LocationAddress2)
                 .HasMaxLength(255)
                 .HasColumnName("LOCATIONADDRESS2");
-            entity.Property(e => e.Locationcity)
+            entity.Property(e => e.LocationCity)
                 .HasMaxLength(20)
                 .HasColumnName("LOCATIONCITY");
-            entity.Property(e => e.Locationemail)
+            entity.Property(e => e.LocationEmail)
                 .HasMaxLength(255)
                 .HasColumnName("LOCATIONEMAIL");
-            entity.Property(e => e.Locationname)
+            entity.Property(e => e.LocationName)
                 .HasMaxLength(255)
                 .HasColumnName("LOCATIONNAME");
-            entity.Property(e => e.Locationphone)
+            entity.Property(e => e.LocationPhone)
                 .HasMaxLength(14)
                 .HasColumnName("LOCATIONPHONE");
-            entity.Property(e => e.Locationpostcode)
+            entity.Property(e => e.LocationPostCode)
                 .HasMaxLength(10)
                 .HasColumnName("LOCATIONPOSTCODE");
-            entity.Property(e => e.Locationremote)
+            entity.Property(e => e.LocationRemote)
                 .HasMaxLength(20)
                 .HasColumnName("LOCATIONREMOTE");
-            entity.Property(e => e.Locationstateprov)
+            entity.Property(e => e.LocationStateProv)
                 .HasMaxLength(20)
                 .HasColumnName("LOCATIONSTATEPROV");
         });
 
-        modelBuilder.Entity<DatRole>(entity =>
+        modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Roleid).HasName("SYS_CONSTRAINT_4108a80a-0971-4aa5-9238-8887cc26873b");
+            entity.HasKey(e => e.RoleId).HasName("SYS_CONSTRAINT_4108a80a-0971-4aa5-9238-8887cc26873b");
 
-            entity.ToTable("DAT_ROLE");
+            entity.ToTable("ROLE", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Roleid)
+            entity.Property(e => e.RoleId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("ROLEID");
-            entity.Property(e => e.Roledesc)
+            entity.Property(e => e.RoleDesc)
                 .HasMaxLength(255)
                 .HasColumnName("ROLEDESC");
-            entity.Property(e => e.Rolename)
+            entity.Property(e => e.RoleName)
                 .HasMaxLength(20)
                 .HasColumnName("ROLENAME");
         });
 
-        modelBuilder.Entity<DatSideevent>(entity =>
+        modelBuilder.Entity<SideEvent>(entity =>
         {
-            entity.HasKey(e => e.Sideeventid).HasName("SYS_CONSTRAINT_469cadd1-282a-496d-9d63-d8f3690a375a");
+            entity.HasKey(e => e.SideEventId).HasName("SYS_CONSTRAINT_469cadd1-282a-496d-9d63-d8f3690a375a");
 
-            entity.ToTable("DAT_SIDEEVENT");
+            entity.ToTable("SIDEEVENT", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Sideeventid)
+            entity.Property(e => e.SideEventId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("SIDEEVENTID");
-            entity.Property(e => e.Sideeventcost)
+            entity.Property(e => e.SideEventCost)
                 .HasPrecision(38)
                 .HasColumnName("SIDEEVENTCOST");
-            entity.Property(e => e.Sideeventdesc)
+            entity.Property(e => e.SideEventDesc)
                 .HasMaxLength(255)
                 .HasColumnName("SIDEEVENTDESC");
-            entity.Property(e => e.Sideeventname)
+            entity.Property(e => e.SideEventName)
                 .HasMaxLength(20)
                 .HasColumnName("SIDEEVENTNAME");
         });
 
-        modelBuilder.Entity<DatTeam>(entity =>
+        modelBuilder.Entity<Team>(entity =>
         {
-            entity.HasKey(e => e.Teamid).HasName("SYS_CONSTRAINT_f9bfe607-791d-4386-87f0-5861a9a8c56a");
+            entity.HasKey(e => e.TeamId).HasName("SYS_CONSTRAINT_f9bfe607-791d-4386-87f0-5861a9a8c56a");
 
-            entity.ToTable("DAT_TEAM");
+            entity.ToTable("TEAM", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Teamid)
+            entity.Property(e => e.TeamId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("TEAMID");
-            entity.Property(e => e.Teamname)
+            entity.Property(e => e.TeamName)
                 .HasMaxLength(20)
                 .HasColumnName("TEAMNAME");
         });
 
-        modelBuilder.Entity<DatUser>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Userid).HasName("SYS_CONSTRAINT_95fad561-982d-4f4a-976d-8eefc31552d0");
+            entity.HasKey(e => e.UserId).HasName("SYS_CONSTRAINT_95fad561-982d-4f4a-976d-8eefc31552d0");
 
-            entity.ToTable("DAT_USER");
+            entity.ToTable("USER", schema: "EVENTSAPP_DAT");
 
-            entity.Property(e => e.Userid)
+            entity.Property(e => e.UserId)
                 .HasPrecision(38)
                 .UseIdentityColumn(1L, 1, false)
                 .HasColumnName("USERID");
-            entity.Property(e => e.Fname)
+            entity.Property(e => e.FName)
                 .HasMaxLength(20)
                 .HasColumnName("FNAME");
-            entity.Property(e => e.Lname)
+            entity.Property(e => e.LName)
                 .HasMaxLength(20)
                 .HasColumnName("LNAME");
         });
 
-        modelBuilder.Entity<MapEventlocation>(entity =>
+        modelBuilder.Entity<EventLocation>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("MAP_EVENTLOCATION");
+                .ToTable("EVENTLOCATION", schema: "EVENTSAPP_MAP");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Locationid)
+            entity.Property(e => e.LocationId)
                 .HasPrecision(38)
                 .HasColumnName("LOCATIONID");
 
             entity.HasOne(d => d.Event).WithMany()
-                .HasForeignKey(d => d.Eventid)
-                .HasConstraintName("EVENTLOCATIONEVENTID");
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("EVENTLOCATION_EVENTID");
 
             entity.HasOne(d => d.Location).WithMany()
-                .HasForeignKey(d => d.Locationid)
-                .HasConstraintName("EVENTLOCATIONLOCATIONID");
+                .HasForeignKey(d => d.LocationId)
+                .HasConstraintName("EVENTLOCATION_LOCATIONID");
         });
 
-        modelBuilder.Entity<MapEventsideevent>(entity =>
+        modelBuilder.Entity<EventSideEvent>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("MAP_EVENTSIDEEVENT");
+                .ToTable("EVENTSIDEEVENT", schema: "EVENTSAPP_MAP");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Sideeventid)
+            entity.Property(e => e.SideEventId)
                 .HasPrecision(38)
                 .HasColumnName("SIDEEVENTID");
 
             entity.HasOne(d => d.Event).WithMany()
-                .HasForeignKey(d => d.Eventid)
-                .HasConstraintName("EVENTSIDEEVENTEVENTID");
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("EVENTSIDEEVENT_EVENTID");
 
-            entity.HasOne(d => d.Sideevent).WithMany()
-                .HasForeignKey(d => d.Sideeventid)
-                .HasConstraintName("EVENTSIDEEVENTSIDEEVENTID");
+            entity.HasOne(d => d.SideEvent).WithMany()
+                .HasForeignKey(d => d.SideEventId)
+                .HasConstraintName("EVENTSIDEEVENT_SIDEEVENTID");
         });
 
-        modelBuilder.Entity<MapEventsideeventuser>(entity =>
+        modelBuilder.Entity<EventSideEventUser>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("MAP_EVENTSIDEEVENTUSER");
+                .ToTable("EVENTSIDEEVENTUSER", schema: "EVENTSAPP_MAP");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Sideeventid)
+            entity.Property(e => e.SideEventId)
                 .HasPrecision(38)
                 .HasColumnName("SIDEEVENTID");
-            entity.Property(e => e.Userid)
+            entity.Property(e => e.UserId)
                 .HasPrecision(38)
                 .HasColumnName("USERID");
 
             entity.HasOne(d => d.Event).WithMany()
-                .HasForeignKey(d => d.Eventid)
-                .HasConstraintName("EVENTSIDEEVENTUSEREVENTID");
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("EVENTSIDEEVENTUSER_EVENTID");
 
-            entity.HasOne(d => d.Sideevent).WithMany()
-                .HasForeignKey(d => d.Sideeventid)
-                .HasConstraintName("EVENTSIDEEVENTUSERSIDEEVENTID");
+            entity.HasOne(d => d.SideEvent).WithMany()
+                .HasForeignKey(d => d.SideEventId)
+                .HasConstraintName("EVENTSIDEEVENTUSER_SIDEEVENTID");
 
             entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.Userid)
-                .HasConstraintName("EVENTSIDEEVENTUSERUSERID");
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("EVENTSIDEEVENTUSER_USERID");
         });
 
-        modelBuilder.Entity<MapEventteamuser>(entity =>
+        modelBuilder.Entity<EventTeamUser>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("MAP_EVENTTEAMUSER");
+                .ToTable("EVENTTEAMUSER", schema: "EVENTSAPP_MAP");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Teamid)
+            entity.Property(e => e.TeamId)
                 .HasPrecision(38)
                 .HasColumnName("TEAMID");
-            entity.Property(e => e.Userid)
+            entity.Property(e => e.UserId)
                 .HasPrecision(38)
                 .HasColumnName("USERID");
 
             entity.HasOne(d => d.Event).WithMany()
-                .HasForeignKey(d => d.Eventid)
-                .HasConstraintName("EVENTTEAMUSEREVENTID");
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("EVENTTEAMUSER_EVENTID");
 
             entity.HasOne(d => d.Team).WithMany()
-                .HasForeignKey(d => d.Teamid)
-                .HasConstraintName("EVENTTEAMUSERTEAMID");
+                .HasForeignKey(d => d.TeamId)
+                .HasConstraintName("EVENTTEAMUSER_TEAMID");
 
             entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.Userid)
-                .HasConstraintName("EVENTTEAMUSERUSERID");
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("EVENTTEAMUSER_USERID");
         });
 
-        modelBuilder.Entity<MapEventuser>(entity =>
+        modelBuilder.Entity<EventUser>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToTable("MAP_EVENTUSER");
+                .ToTable("EVENTUSER", schema: "EVENTSAPP_MAP");
 
-            entity.Property(e => e.Eventid)
+            entity.Property(e => e.EventId)
                 .HasPrecision(38)
                 .HasColumnName("EVENTID");
-            entity.Property(e => e.Userid)
+            entity.Property(e => e.UserId)
                 .HasPrecision(38)
                 .HasColumnName("USERID");
 
             entity.HasOne(d => d.Event).WithMany()
-                .HasForeignKey(d => d.Eventid)
-                .HasConstraintName("EVENTUSEREVENTIDFK");
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("EVENTUSER_EVENTID");
 
             entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.Userid)
-                .HasConstraintName("EVENTUSERUSERIDFK");
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("EVENTUSER_USERID");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -1,13 +1,14 @@
 using EventsApp.Models;
+using EventsApp.Models.DAT;
 
 namespace EventsApp.Services.Interfaces;
 
 public interface IUserService
 {
-    DatUser CreateUser(DatUser user);
-    IQueryable<DatUser> ReadUsersByIds(List<long> userId);
-    IQueryable<DatUser> ReadUsersByName(List<string> userNames);
-    IQueryable<DatUser> UpdateUser(DatUser user);
-    IQueryable<DatUser> DeleteUser(int userId);
+    Task<int> CreateUser(User user);
+    IQueryable<User> ReadUsersByIds(List<long> userId);
+    IQueryable<User> ReadUsersByName(List<string> userNames);
+    IQueryable<User> UpdateUser(User user);
+    IQueryable<User> DeleteUser(int userId);
     
 }

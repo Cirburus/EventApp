@@ -1,36 +1,35 @@
 using EventsApp.Models;
+using EventsApp.Models.DAT;
 using EventsApp.Services.Interfaces;
 
 namespace EventsApp.Services;
 
 public class UserService(SnowflakeContext snowflakeContext): IUserService
 {
-    public DatUser CreateUser(DatUser user)
+    public Task<int> CreateUser(User user)
     {
-        snowflakeContext.DatUsers.Add(user);
+        snowflakeContext.Users.Add(user);
         
-        snowflakeContext.SaveChanges();
-        
-        return user;
+        return snowflakeContext.SaveChangesAsync();
     }
 
-    public IQueryable<DatUser> ReadUsersByIds(List<long> userIds)
+    public IQueryable<User> ReadUsersByIds(List<long> userIds)
     {
-        return snowflakeContext.DatUsers.Where(datUser => userIds.Contains<long>(datUser.Userid));
+        return snowflakeContext.Users.Where(datUser => userIds.Contains<long>(datUser.UserId));
     }
 
-    public IQueryable<DatUser> ReadUsersByName(List<string> userNames)
+    public IQueryable<User> ReadUsersByName(List<string> userNames)
     {
-        return snowflakeContext.DatUsers.Where(datUser => userNames.Contains(datUser.Fname??"") || userNames.Contains(datUser.Lname));
+        return snowflakeContext.Users.Where(datUser => userNames.Contains(datUser.FName??"") || userNames.Contains(datUser.LName));
     }
 
-    public IQueryable<DatUser> UpdateUser(DatUser user)
+    public IQueryable<User> UpdateUser(User user)
     {
-        var usersToUpdate = snowflakeContext.DatUsers.Where(datUser => user.Userid.Equals(datUser.Userid));
+        var usersToUpdate = snowflakeContext.Users.Where(datUser => user.UserId.Equals(datUser.UserId));
         foreach (var datUser in usersToUpdate)
         {
-            datUser.Fname = user.Fname;
-            datUser.Lname = user.Lname;
+            datUser.FName = user.FName;
+            datUser.LName = user.LName;
         }
 
         snowflakeContext.SaveChanges();
@@ -38,12 +37,12 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
         return usersToUpdate;
     }
 
-    public IQueryable<DatUser> DeleteUser(int userId)
+    public IQueryable<User> DeleteUser(int userId)
     {
-        var usersToDelete = snowflakeContext.DatUsers.Where(datUser => datUser.Userid.Equals(userId));
+        var usersToDelete = snowflakeContext.Users.Where(datUser => datUser.UserId.Equals(userId));
         foreach (var datUser in usersToDelete)
         {
-            snowflakeContext.DatUsers.RemoveRange(datUser);
+            snowflakeContext.Users.RemoveRange(datUser);
         }
 
         snowflakeContext.SaveChanges();

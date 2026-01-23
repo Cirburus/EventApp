@@ -1,4 +1,5 @@
 using EventsApp.Models;
+using EventsApp.Models.DAT;
 using EventsApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace EventsApp.Controllers;
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpPost("add")]
-    public IActionResult AddUser([FromBody] DatUser user)
+    public IActionResult AddUser([FromBody] User user)
     {
         return Ok(userService.CreateUser(user));
     }
@@ -29,7 +30,7 @@ public class UserController(IUserService userService) : ControllerBase
         return Ok(userService.ReadUsersByName(userNames));
     }
     [HttpPut("update")]
-    public IActionResult UpdateUser([FromBody] DatUser user)
+    public IActionResult UpdateUser([FromBody] User user)
     {
         return Ok(userService.UpdateUser(user));
     }
