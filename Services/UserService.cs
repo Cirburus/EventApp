@@ -28,13 +28,14 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
         return snowflakeContext.Users.Where(datUser => userNames.Contains(datUser.FName??"") || userNames.Contains(datUser.LName));
     }
 
-    public async Task<IQueryable<User>> UpdateUser(User user)
+    public async Task<IQueryable<User>> UpdateUsers(List<User> users)
     {
-        var usersToUpdate = snowflakeContext.Users.Where(datUser => user.UserId.Equals(datUser.UserId));
+        var usersToUpdate = snowflakeContext.Users.Where(u => users.Select(i => i.UserId).Contains(u.UserId));
+
         foreach (var datUser in usersToUpdate)
         {
-            datUser.FName = user.FName;
-            datUser.LName = user.LName;
+            datUser.FName = users.Where(user => user.UserId.Equals(datUser.UserId)).FirstOrDefault().FName;
+            datUser.LName = users.Where(user => user.UserId.Equals(datUser.UserId)).FirstOrDefault().LName;
         }
 
         await snowflakeContext.SaveChangesAsync();
@@ -42,7 +43,7 @@ public class UserService(SnowflakeContext snowflakeContext): IUserService
         return usersToUpdate;
     }
 
-    public async Task<IQueryable<User>> DeleteUsers(int userId)
+    public async Task<IQueryable<User>> DeleteUsers(List<int> userId)
     {
         var usersToDelete = snowflakeContext.Users.Where(datUser => datUser.UserId.Equals(userId));
         foreach (var datUser in usersToDelete)

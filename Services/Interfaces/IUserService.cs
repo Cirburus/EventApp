@@ -8,7 +8,7 @@ public interface IUserService
     Task<List<User>> CreateUsers(List<User> users);
     IQueryable<User> ReadUsersByIds(List<long> userId);
     IQueryable<User> ReadUsersByName(List<string> userNames);
-    Task<IQueryable<User>> UpdateUser(User user);
-    Task<IQueryable<User>> DeleteUsers(int userId);
+    Task<IQueryable<User>> UpdateUsers(List<User> user);
+    Task<IQueryable<User>> DeleteUsers(List<int> userId);
     
 }
