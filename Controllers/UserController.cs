@@ -36,21 +36,21 @@ public class UserController(IUserService userService) : ControllerBase
         return Ok(result);
     }
     /// <summary>
-    /// Get a list of users by a list of ids
+    /// Get a list of users by a list of ids (Should be a GET)
     /// </summary>
     /// <param name="userIds"></param>
     /// <returns></returns>
-    [HttpGet("{userIds}")]
-    public IActionResult GetUsersById(List<long> userIds)
+    [HttpPost("ById")]
+    public IActionResult GetUsersById([FromBody] List<long> userIds)
     {
         return Ok(userService.ReadUsersByIds(userIds));
     }
     /// <summary>
-    /// Return all users which have a matching Name (First or Last)
+    /// Return all users which have a matching Name (First or Last) (Should be a GET)
     /// </summary>
     /// <param name="userNames"></param>
     /// <returns>A List of users which have matching FName or LName to one in the list</returns>
-    [HttpGet("ByName")]
+    [HttpPost("ByName")]
     public IActionResult GetUsersByName([FromBody] List<string> userNames)
     {
         return Ok(userService.ReadUsersByName(userNames));
